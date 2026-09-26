@@ -18,8 +18,7 @@ class RemoteDatasource implements BaseRemoteDataSource{
       var response = await dio.get('${AppConstants.baseurl}/weather?q=$countryName&appid=${AppConstants.appId}');
       print(response);
       return WeatherModel.fromJson(jsonDecode(response.data));
-
-
+      
   }
 
 
