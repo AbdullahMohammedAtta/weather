@@ -1,6 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:weather/weather/data/datasource/remote_datasource.dart';
+import 'package:weather/weather/data/repository/weather_repository.dart';
+import 'package:weather/weather/domain/entities/weather.dart';
+import 'package:weather/weather/domain/repository/base_weather_repository.dart';
+import 'package:weather/weather/domain/usecases/get_weather_by_country_name.dart';
 
-void main() {
+void main() async{
+  BaseRemoteDataSource baseRemoteDataSource = RemoteDatasource();
+  BaseWeatherRepository baseWeatherRepository = WeatherRepository(baseRemoteDataSource);
+  Weather weather = await GetWeatherByCountryName(baseWeatherRepository).execute("Egypt");
+  print("weather : $weather");
   runApp(const MyApp());
 }
 
